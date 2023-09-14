@@ -1,7 +1,6 @@
 # e-Commerce
 
-============================================================================
-============================================================================
+-------------------------------------------
 
 Este proyecto, estará basado en React.
 
@@ -20,7 +19,7 @@ Haremos uso de Hocks, Mocks, etc.
 Sincronizaremos los cambios del carrito a la lista de productos para que su estado sea actualizado solo cuando sea necesario.
 Guardaremos en un localStorage el estado del carrito 
 
-============================================================================
+-------------------------------------------
 
 This project will be based on React.
 
@@ -39,7 +38,6 @@ We'll use hocks, mocks, etc..
 We will synchronize the cart changes with the list of products so that its state is updated only when necessary.
 Save the state in local storage for our shopping cart
 
-============================================================================
-============================================================================
+-------------------------------------------
 
 
