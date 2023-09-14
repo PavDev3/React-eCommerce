@@ -36,9 +36,9 @@ This application is designed for the sale of products and services through the o
 
 
             Shopping Cart
-        - The shopping cart consists of two parts:
-        1) Product List (List of Products).
-        2) Quantity To Buy.
+            - The shopping cart consists of two parts:
+            1) Product List (List of Products).
+            2) Quantity To Buy.
 
 We'll use hocks, mocks, etc..
 We will synchronize the cart changes with the list of products so that its state is updated only when necessary.
