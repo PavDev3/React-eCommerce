@@ -11,12 +11,23 @@
 }
 
 .footer span {
+    display: flex;
+    justify-content: center;
     font-size: 14px;
     color: #09f;
     opacity: .8;
 }
 
 .footer h4 {
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    display: flex;
+}
+
+.footer h5 {
+    display: flex;
+    justify-content: center;
     margin: 0;
     display: flex;
 }

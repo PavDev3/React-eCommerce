@@ -15,7 +15,7 @@ function App() {
     <>
     <Header changeFilters={setFilters}  />
     <Products products={filteredProducts}/>
-    <Footer></Footer>
+    <Footer/>
     </>
   )
 }
