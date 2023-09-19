@@ -1,9 +1,11 @@
 import { products as initialProducts } from './mocks/products.json'
-import { Products } from './components/Products'
+import { Products } from './components/Products.jsx'
 import { useState } from 'react'
-import { Header } from './components/Header'
-import { useFilters } from './hooks/useFilters'
+import { Header } from './components/Header.jsx'
+import { useFilters } from './hooks/useFilters.jsx'
 import { Footer } from './components/Footer'
+import { Cart } from './components/Cart.jsx'
+import { CartProvider } from './context/cart.jsx'
 
 
 function App() {
@@ -12,11 +14,12 @@ function App() {
   const filteredProducts = filterProducts(products)
         
   return (
-    <>
-    <Header />
-    <Products products={filteredProducts}/>
-    <Footer />
-    </>
+    <CartProvider>
+      <Header />
+      <Cart />
+      <Products products={filteredProducts}/>
+      <Footer />
+    </CartProvider>
   )
 }
 
