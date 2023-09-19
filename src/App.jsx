@@ -8,14 +8,14 @@ import { Footer } from './components/Footer'
 
 function App() {
   const [products] = useState (initialProducts)
-  const { filters, filterProducts, setFilters } = useFilters()
+  const { filterProducts } = useFilters()
   const filteredProducts = filterProducts(products)
         
   return (
     <>
-    <Header changeFilters={setFilters}  />
+    <Header />
     <Products products={filteredProducts}/>
-    <Footer filters={filters}/>
+    <Footer />
     </>
   )
 }
