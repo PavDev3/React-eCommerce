@@ -18,19 +18,24 @@ export function Products ({ products }) {
                     return (
                     <li key={product.id}>                    
                         <h4 className='title'>{product.title}</h4>
-                        <img src={product.thumbnail} alt={product.title}/>
+                        <img 
+                        src={product.thumbnail}
+                        alt={product.title}
+                        />
                         <p>{product.description}</p>
                         <p className='price'>${product.price}</p>
-                        <button onClick={() => 
-                        isProductInCart 
-                        ? removeFromCart(product)
-                        : addToCart(product)}
-                        className='buttonCart'>
-                            {
-                                isProductInCart 
-                                ? <RemoveFromCartIcon />
-                                : <AddToCartIcon />
-                            }
+                        <button
+                            style={{ backgroundColor: isProductInCart ? 'red' : '#09f' }} onClick={() => {
+                                isProductInCart
+                                ? removeFromCart(product)
+                                : addToCart(product)
+                                }}
+                                >
+                                {
+                                isProductInCart
+                                    ? <RemoveFromCartIcon />
+                                    : <AddToCartIcon />
+                                }
                         </button>
                     </li>
                 )

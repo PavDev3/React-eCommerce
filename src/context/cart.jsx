@@ -10,16 +10,16 @@ export function CartProvider({ children }) {
     const addToCart = product => {
         // Chequeamos que el producto no este en el carrito
         const productCartIndex = cart.findIndex(item => item.id === product.id)
-        if (productCartIndex >= 0) {
 
-            // usamos structuredclone porque un spreed nos trae solo copia superficial
+        if (productCartIndex >= 0) {
+            // usamos structured clone porque un spreed nos trae solo copia superficial
             const newCart = structuredClone(cart)
-            newCart[productCartIndex].qty++
-            setCart(newCart)
+            newCart[productCartIndex].quantity += 1
+            return setCart(newCart)
         }
 
         // Si el producto no esta en el carrito
-        setCart(prevState => [...prevState, { ...product, qty: 1 }])
+        setCart(prevState => [...prevState, { ...product, quantity: 1 }])
     }
 
     const removeFromCart = product => {
@@ -37,6 +37,7 @@ export function CartProvider({ children }) {
             addToCart,
             clearCart,
             removeFromCart
-        }}>{children}</CartContext.Provider>
+        }}>{children}
+        </CartContext.Provider>
       )
 }
