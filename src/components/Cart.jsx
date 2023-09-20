@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 
 import './Cart.css'
 
-function CartItem ({ thumbnail, price, title, quantity, addToCart}) {
+function CartItem ({ thumbnail, price, title, quantity, addToCart, minusFromCart}) {
     return (
         <li >
             <img
@@ -20,6 +20,7 @@ function CartItem ({ thumbnail, price, title, quantity, addToCart}) {
             Qty: {quantity}
             </small>
             <button onClick={addToCart}>+</button>
+            <button onClick={minusFromCart}>-</button>
         </footer>
         </li>
     )
@@ -27,7 +28,7 @@ function CartItem ({ thumbnail, price, title, quantity, addToCart}) {
 
 export function Cart () {
     const cartCheckboxId = useId()
-    const { cart, clearCart, addToCart } = useCart()
+    const { cart, clearCart, addToCart, minusFromCart } = useCart()
 
     
     return (
@@ -42,6 +43,7 @@ export function Cart () {
                         <CartItem 
                             key={product.id}
                             addToCart={() => addToCart(product)}
+                            minusFromCart={() => minusFromCart(product)}
                             {...product}
                         />
                         
@@ -61,6 +63,7 @@ CartItem.propTypes = {
     title: PropTypes.string.isRequired,
     quantity: PropTypes.number.isRequired,
     addToCart: PropTypes.func.isRequired,
+    minusFromCart: PropTypes.func.isRequired
 };
 
 export default CartItem;
