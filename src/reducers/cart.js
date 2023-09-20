@@ -42,22 +42,26 @@ const UPDATE_STATE_BY_ACTION = {
   },
 
   [CART_ACTION_TYPES.MINUS_FROM_CART]: (state, action) => {
-    const { id } = action.payload
-    const productInCartIndex = state.findIndex(item => item.id === id)
-
+    const { id } = action.payload;
+    const productInCartIndex = state.findIndex(item => item.id === id);
+  
     if (productInCartIndex >= 0) {
-
-      const newState = [
-        ...state.slice(0, productInCartIndex),
-        { ...state[productInCartIndex], quantity: state[productInCartIndex].quantity - 1 },
-        ...state.slice(productInCartIndex + 1)
-      ]
-
-      updateLocalStorage(newState)
-      return newState
+      const currentQuantity = state[productInCartIndex].quantity;
+  
+      // Verifica si la cantidad actual es mayor que 1 antes de restarla
+      if (currentQuantity > 1) {
+        const newState = [
+          ...state.slice(0, productInCartIndex),
+          { ...state[productInCartIndex], quantity: currentQuantity - 1 },
+          ...state.slice(productInCartIndex + 1)
+        ];
+  
+        updateLocalStorage(newState);
+        return newState;
+      }
     }
-
-    return state
+  
+    return state;
   },
   [CART_ACTION_TYPES.REMOVE_FROM_CART]: (state, action) => {
     const { id } = action.payload
