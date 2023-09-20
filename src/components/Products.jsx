@@ -13,7 +13,7 @@ export function Products ({ products }) {
     return (
         <main className='products'>
             <ul>
-                {products.slice(0,10).map(product => {
+                {products.slice(0,50).map(product => {
                     const isProductInCart = checkProductInCart(product)
                     return (
                     <li key={product.id}>                    
@@ -22,7 +22,7 @@ export function Products ({ products }) {
                         src={product.thumbnail}
                         alt={product.title}
                         />
-                        <p>{product.description}</p>
+                        <span>{product.description}</span>
                         <p className='price'>${product.price}</p>
                         <button
                             style={{ backgroundColor: isProductInCart ? 'red' : '#09f' }} onClick={() => {
