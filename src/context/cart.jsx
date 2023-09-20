@@ -1,43 +1,47 @@
-import { createContext, useState } from "react";
+import { createContext, useReducer } from "react";
+import { cartReducer, cartInitialState } from "../reducers/cart"
+import PropTypes from 'prop-types';
+
 
 // 1. Crear contexto
 export const CartContext = createContext()
 
-// 2. Crear proveedor
-export function CartProvider({ children }) {
-    const [cart, setCart] = useState([])
+function useCartReducer () {
+  const [state, dispatch] = useReducer(cartReducer, cartInitialState)
 
-    const addToCart = product => {
-        // Chequeamos que el producto no este en el carrito
-        const productCartIndex = cart.findIndex(item => item.id === product.id)
+  const addToCart = product => dispatch({
+    type: 'ADD_TO_CART',
+    payload: product
+  })
 
-        if (productCartIndex >= 0) {
-            // usamos structured clone porque un spreed nos trae solo copia superficial
-            const newCart = structuredClone(cart)
-            newCart[productCartIndex].quantity += 1
-            return setCart(newCart)
-        }
+  const removeFromCart = product => dispatch({
+    type: 'REMOVE_FROM_CART',
+    payload: product
+  })
 
-        // Si el producto no esta en el carrito
-        setCart(prevState => [...prevState, { ...product, quantity: 1 }])
-    }
+  const clearCart = () => dispatch({ type: 'CLEAR_CART' })
 
-    const removeFromCart = product => {
-        setCart(prevState => prevState.filter(item => item.id !== product.id))
-    }
-
-    
-    const clearCart = () => { 
-        setCart([])
-      }
-
-      return (
-        <CartContext.Provider value={{
-            cart,
-            addToCart,
-            clearCart,
-            removeFromCart
-        }}>{children}
-        </CartContext.Provider>
-      )
+  return { state, addToCart, removeFromCart, clearCart }
 }
+
+// la dependencia de usar React Context
+// es MÍNIMA
+export function CartProvider ({ children }) {
+  const { state, addToCart, removeFromCart, clearCart } = useCartReducer()
+
+  return (
+    <CartContext.Provider value={{
+      cart: state,
+      addToCart,
+      removeFromCart,
+      clearCart
+    }}
+    >
+      {children}
+    </CartContext.Provider>
+  )
+}
+
+CartProvider.propTypes = {
+    children: PropTypes.node, // Puedes utilizar PropTypes.node para representar cualquier contenido React válido.
+  };
