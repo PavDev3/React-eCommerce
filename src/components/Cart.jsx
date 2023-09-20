@@ -35,7 +35,7 @@ export function Cart () {
             <label className="cart-button" htmlFor={cartCheckboxId}>
                 <CartIcon />
             </label>
-            <input id={cartCheckboxId} type='checkbox' hidden />
+            <input id={cartCheckboxId} type='checkbox' style={{display: 'none'}} />
             <aside className="cart">
                 <ul>
                     {cart.map(product => (
